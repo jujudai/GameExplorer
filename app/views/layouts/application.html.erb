@@ -11,15 +11,25 @@
   <body>
     <header>
       <nav>
-        <div class="logo">
-           <!-- ロゴリンク -->
+          <div class="logo">
+          <%= link_to 'MyApp', root_path %> <!-- リンク付きロゴ -->
+        </div>
+        <div class="search-form">
+          <%= form_with url: '#', method: :get, local: true do |f| %>
+            <%= f.text_field :query, placeholder: 'Search...' %>
+            <%= f.submit 'Search' %>
+          <% end %>
         </div>
         <div class="nav-links">
-          
+          <%= link_to '新規登録', new_user_registration_path %> |
+          <%= link_to 'ログイン', new_user_session_path %> |
+          <%= link_to 'About', about_path %>
         </div>
       </nav>
     </header>
 
-    <%= yield %>
+    <main>
+      <%= yield %>
+    </main>
   </body>
 </html>

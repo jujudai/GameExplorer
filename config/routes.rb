@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  get 'top' => 'homes#top'       # トップページをルートに設定
-  get 'about', to: 'homes#about', as: 'about' # Aboutページのルーティング
+  devise_for :users
+  root to: "homes#top"
+  get '/homes/about', to: 'homes#about', as: 'about' # Aboutページのルーティング
 
   # 他のルーティング設定もここに追加
 end

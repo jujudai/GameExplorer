@@ -17,3 +17,22 @@
  body {
   background-image: image-url("hoge.jpg");
 }
+
+header nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+header nav ul li {
+  display: inline;
+  margin-right: 20px;
+}
+
+header nav ul li a {
+  text-decoration: none;
+  color: #007BFF;
+}
+
+header nav ul li a:hover {
+  color: #0056b3;
+}

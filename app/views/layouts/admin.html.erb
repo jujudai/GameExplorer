@@ -1,18 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Admin - Meshiterro</title>
+  <title>Admin-Game Explorer</title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
-  <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 <body>
-  <% if admin_signed_in? %>
-    <div class="text-right">
-      <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %>
-    </div>
-  <% end %>
-  <%= yield %>
+  <header>
+    <nav>
+      <ul>
+        <li><%= link_to 'ユーザー一覧', admin_users_path %></li>
+        <li><%= link_to 'ゲーム一覧', admin_games_path %></li>
+        <li><%= link_to 'ジャンル一覧', admin_genres_path %></li>
+        <!-- 他のリンクがあれば追加 -->
+        <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <%= yield %>  <!-- ここにページの内容が挿入されます -->
 </body>
 </html>

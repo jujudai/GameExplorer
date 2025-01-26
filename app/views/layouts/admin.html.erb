@@ -11,10 +11,10 @@
   <header>
     <nav>
       <ul>
+        <li><%= link_to '管理者トップ', admin_root_path %></li>
         <li><%= link_to 'ユーザー一覧', admin_users_path %></li>
         <li><%= link_to 'ゲーム一覧', admin_games_path %></li>
         <li><%= link_to 'ジャンル一覧', admin_genres_path %></li>
-        <!-- 他のリンクがあれば追加 -->
         <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
       </ul>
     </nav>

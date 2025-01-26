@@ -1,9 +1,14 @@
-class Admin::UsersController < ApplicationController
+class Admin::UsersController < Admin::ApplicationController
   before_action :authenticate_admin!
   
   # ユーザー一覧
   def index
     @users = User.all
+  end
+
+  # ユーザー詳細表示
+  def show
+    @user = User.find(params[:id])  
   end
   
   # ユーザー削除

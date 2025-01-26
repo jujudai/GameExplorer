@@ -1,0 +1,27 @@
+<h1>ゲーム一覧</h1>
+
+<%= link_to "新規ゲーム登録", new_admin_game_path, class: "btn btn-primary" %>
+
+<table>
+  <thead>
+    <tr>
+      <th>ゲーム名</th>
+      <th>ジャンル</th>
+      <th>画像</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @games.each do |game| %>
+      <tr>
+        <td><%= game.title %></td>
+        <td><%= game.genre&.name %></td>
+        <td><%= image_tag(game.image, size: "100x100") if game.image.present? %></td>
+        <td>
+          <%= link_to "編集", edit_admin_game_path(game), class: "btn btn-secondary" %>
+          <%= link_to "削除", admin_game_path(game), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,27 +1,38 @@
-<h1>ゲーム一覧</h1>
+<div class="container mt-4">
+  <div class="row">
+    <!-- 左側: 新規登録フォーム (4/12) -->
+    <div class="col-md-4">
+      <h3>ゲーム新規登録</h3>
+      <%= render 'form', game: @game %>
+    </div>
 
-<%= link_to "新規ゲーム登録", new_admin_game_path, class: "btn btn-primary" %>
-
-<table>
-  <thead>
-    <tr>
-      <th>ゲーム名</th>
-      <th>ジャンル</th>
-      <th>画像</th>
-      <th>操作</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @games.each do |game| %>
-      <tr>
-        <td><%= game.title %></td>
-        <td><%= game.genre&.name %></td>
-        <td><%= image_tag(game.image, size: "100x100") if game.image.present? %></td>
-        <td>
-          <%= link_to "編集", edit_admin_game_path(game), class: "btn btn-secondary" %>
-          <%= link_to "削除", admin_game_path(game), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <!-- 右側: ゲーム一覧 (8/12) -->
+    <div class="col-md-8">
+      <h3>ゲーム一覧</h3>
+      <table class="table table-bordered">
+        <thead class="table-dark">
+          <tr>
+            <th>画像</th>
+            <th>ゲーム名</th>
+            <th>紹介文</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @games.each do |game| %>
+            <tr>
+              <td>
+                <% if game.image.attached? %>
+                  <%= image_tag game.image, size: "100x100", class: "img-thumbnail" %>
+                <% else %>
+                  <span>画像なし</span>
+                <% end %>
+              </td>
+              <td><%= game.name %></td>
+              <td><%= game.description %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

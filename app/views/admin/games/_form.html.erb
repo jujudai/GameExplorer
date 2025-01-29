@@ -1,0 +1,18 @@
+<%= form_with model: game, url: admin_games_path, local: true, class: "card p-3 shadow" do |f| %>
+  <div class="mb-3">
+    <%= f.label :name, "ゲーム名" %>
+    <%= f.text_field :name, class: "form-control", placeholder: "ゲームの名前を入力" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :image, "ゲーム画像" %>
+    <%= f.file_field :image, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :description, "紹介文" %>
+    <%= f.text_area :description, class: "form-control", rows: 3, placeholder: "ゲームの紹介文を入力" %>
+  </div>
+
+  <%= f.submit "登録する", class: "btn btn-primary w-100" %>
+<% end %>

@@ -1,7 +1,7 @@
 <%= form_with model: game, url: admin_games_path, local: true, class: "card p-3 shadow" do |f| %>
   <div class="mb-3">
-    <%= f.label :name, "ゲーム名" %>
-    <%= f.text_field :name, class: "form-control", placeholder: "ゲームの名前を入力" %>
+    <%= f.label :title, "ゲーム名" %>
+    <%= f.text_field :title, class: "form-control", placeholder: "ゲームの名前を入力" %>
   </div>
 
   <div class="mb-3">

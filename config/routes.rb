@@ -17,8 +17,8 @@ Rails.application.routes.draw do
     get 'dashboards', to: 'dashboards#index'
     root to: 'dashboards#index'
     resources :users, only: [:index, :show,:edit, :update, :destroy]
-    resources :games, only: [:index, :create, :new, :edit, :update, :destroy]
-    resources :genres
+    resources :games, only: [:index, :new, :show, :create, :edit, :update, :destroy]
+    resources :genres, only: [:index, :new, :create, :edit, :update, :destroy]
   end
 
   resources :users, only: [:show]

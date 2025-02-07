@@ -1,0 +1,34 @@
+<div class="container mt-4">
+  <h1>ゲーム編集</h1>
+
+  <%= form_with(model: @game, url: admin_game_path(@game), method: :patch, local: true) do |f| %>
+    <div class="form-group">
+      <%= f.label :title, "ゲーム名" %>
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :description, "紹介文" %>
+      <%= f.text_area :description, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :genre_id, "ジャンル" %>
+      <%= f.collection_select :genre_id, Genre.all, :id, :name, { prompt: "ジャンルを選択" }, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :image, "ゲーム画像" %>
+      <%= f.file_field :image, class: "form-control" %>
+      <% if @game.image.attached? %>
+        <p>現在の画像:</p>
+        <%= image_tag @game.image, size: "200x200", class: "img-thumbnail" %>
+      <% end %>
+    </div>
+
+    <div class="form-group">
+      <%= f.submit "更新", class: "btn btn-primary" %>
+      <%= link_to "キャンセル", admin_games_path, class: "btn btn-secondary" %>
+    </div>
+  <% end %>
+</div>

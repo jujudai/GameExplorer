@@ -7,6 +7,10 @@ class Admin::GamesController < ApplicationController
       @game = Game.new
     end
 
+    def show
+      @game = Game.includes(:genre).find(params[:id])
+    end
+
     def new
       @game = Game.new
     end
@@ -36,6 +40,7 @@ class Admin::GamesController < ApplicationController
 
     def destroy
       @game = Game.find(params[:id])
+      @game.image.purge if @game.image.attached?
       @game.destroy
       redirect_to admin_games_path, notice: "ゲームを削除しました。"
     end

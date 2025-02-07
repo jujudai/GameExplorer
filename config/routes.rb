@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  get 'games/show'
   get 'users/show'
   devise_for :users, sign_out_via: [:delete]
   root to: "homes#top"
@@ -21,5 +22,6 @@ Rails.application.routes.draw do
     resources :genres, only: [:index, :new, :create, :edit, :update, :destroy]
   end
 
-  resources :users, only: [:show]
+  resources :users, only: [:show, :edit, :update]
+  resources :games, only: [:show]
 end

@@ -10,4 +10,13 @@
   <strong>作成日時:</strong> <%= @user.created_at.strftime('%Y-%m-%d %H:%M:%S') %>
 </p>
 
-<%= link_to '戻る', admin_users_path, class: 'btn btn-secondary' %>
+<!-- 編集リンク -->
+<%= link_to '編集', edit_user_path(@user), class: 'btn btn-warning' %>
+
+<!-- 削除リンク -->
+<%= link_to '削除', user_path(@user), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
+
+<br>
+<br>
+<!-- 戻るリンク -->
+<%= link_to '戻る', root_path, class: 'btn btn-secondary' %>

@@ -51,3 +51,18 @@ header nav ul li a {
 header nav ul li a:hover {
   color: #0056b3;
 }
+
+.star {
+  font-size: 24px;
+  cursor: pointer;
+  color: gray;
+}
+
+.star.selected {
+  color: gold;
+}
+
+.stars {
+  font-size: 18px;
+  color: gold;
+}

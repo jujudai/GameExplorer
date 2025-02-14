@@ -4,4 +4,5 @@ class Game < ApplicationRecord
   validates :title, presence: true
   validates :description, presence: true
   validates :genre_id, presence: true
+  has_many :reviews, dependent: :destroy
 end

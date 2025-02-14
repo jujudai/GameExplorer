@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   GUEST_USER_EMAIL = "guest@example.com"
 
+  has_many :reviews, dependent: :destroy
+
   def self.guest
     find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
       user.password = SecureRandom.urlsafe_base64
@@ -16,5 +18,4 @@ class User < ApplicationRecord
   def guest_user?
     email == GUEST_USER_EMAIL
   end
-  
 end

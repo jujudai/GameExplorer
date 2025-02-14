@@ -15,12 +15,42 @@
 
       <h4>ジャンル</h4>
       <p><%= @game.genre.present? ? @game.genre.name : "未分類" %></p>
-
     </div>
   </div>
 
   <hr>
 
+  <!-- ⭐ レビューの統計情報 -->
+  <% if @game.reviews.any? %>
+    <% average_rating = @game.reviews.average(:rating).to_f.round(1) %>
+    <% rating_counts = @game.reviews.group_by(&:rating).transform_values(&:count) %>
+
+    <h3>レビュー統計</h3>
+    <p><strong>平均評価: </strong> <%= average_rating %> / 5 （⭐️ <%= "⭐" * average_rating.round %>）</p>
+
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>評価</th>
+          <th>投稿数</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% (1..5).reverse_each do |star| %>
+          <tr>
+            <td><%= "⭐" * star %>（<%= star %>）</td>
+            <td><%= rating_counts[star] || 0 %> 件</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>まだレビューがありません。</p>
+  <% end %>
+
+  <hr>
+
+  <!-- ⭐ レビュー一覧 -->
   <h3>レビュー一覧</h3>
   <% @game.reviews.each do |review| %>
     <div class="review-box">
@@ -51,13 +81,13 @@
 
       <%= form.submit "投稿", class: "btn btn-primary mt-2" %>
     <% end %>
-    <% elsif user_signed_in? && current_user.guest_user? %>
-      <p class="text-danger">ゲストユーザーはレビューを投稿できません。</p>
-    <% else %>
+  <% elsif user_signed_in? && current_user.guest_user? %>
+    <p class="text-danger">ゲストユーザーはレビューを投稿できません。</p>
+  <% else %>
     <p><%= link_to "ログインしてレビューを投稿", new_user_session_path %></p>
   <% end %>
 
   <div class="mt-4">
-    <%= link_to "ゲーム一覧に戻る", root_path, class: "btn btn-secondary" %>  <!-- トップページへ戻るリンク -->
+    <%= link_to "ゲーム一覧に戻る", root_path, class: "btn btn-secondary" %>
   </div>
 </div>

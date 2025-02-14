@@ -12,7 +12,8 @@ class ReviewsController < ApplicationController
     if @review.save
       redirect_to game_path(@game), notice: "レビューを投稿しました。"
     else
-      redirect_to game_path(@game), alert: "レビューの投稿に失敗しました。"
+      @reviews = @game.reviews
+      render "games/show"
     end
   end
 
@@ -43,7 +44,7 @@ class ReviewsController < ApplicationController
   end
 
   def review_params
-    params.require(:review).permit(:comment, :rating)
+    params.require(:review).permit(:content, :rating)
   end
 
   def reject_guest_user

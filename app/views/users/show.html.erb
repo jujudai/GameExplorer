@@ -10,13 +10,50 @@
   <strong>作成日時:</strong> <%= @user.created_at.strftime('%Y-%m-%d %H:%M:%S') %>
 </p>
 
-<!-- 編集リンク -->
-<%= link_to '編集', edit_user_path(@user), class: 'btn btn-warning' %>
+<!-- ゲストユーザーでない場合のみ編集リンクを表示 -->
+<% if !current_user.guest_user? %>
+  <%= link_to '編集', edit_user_path(@user), class: 'btn btn-warning' %>
+  <!-- 削除リンクもゲストユーザーでない場合のみ表示 -->
+  <%= link_to '削除', user_path(@user), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
+<% end %>
 
-<!-- 削除リンク -->
-<%= link_to '削除', user_path(@user), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
+<hr>
 
-<br>
+<h2>投稿したレビュー一覧</h2>
+
+<% if @reviews.any? %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ゲームタイトル</th>
+        <th>評価</th>
+        <th>レビュー内容</th>
+        <th>投稿日</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @reviews.each do |review| %>
+        <tr>
+          <td><%= link_to review.game.title, game_path(review.game) %></td>
+          <td><%= "⭐" * review.rating %></td>
+          <td><%= review.content.truncate(50) %></td>
+          <td><%= review.created_at.strftime('%Y-%m-%d %H:%M') %></td>
+          <td>
+            <!-- ゲストユーザーでない場合のみ編集・削除リンクを表示 -->
+            <% if !current_user.guest_user? %>
+              <%= link_to '編集', edit_game_review_path(review.game, review), class: 'btn btn-sm btn-warning' %>
+              <%= link_to '削除', game_review_path(review.game, review), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-sm btn-danger' %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>まだレビューを投稿していません。</p>
+<% end %>
+
 <br>
 <!-- 戻るリンク -->
 <%= link_to '戻る', root_path, class: 'btn btn-secondary' %>

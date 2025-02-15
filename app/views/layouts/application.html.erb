@@ -79,10 +79,11 @@
           </div>
 
           <!-- 検索フォーム -->
-          <form class="d-flex ms-3" action="#" method="get">
-            <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search">
-            <button class="btn btn-outline-light" type="submit">Search</button>
-          </form>
+
+          <%= form_with url: games_path, method: :get, local: true, class: "d-flex ms-3" do |f| %>
+            <%= f.text_field :search, placeholder: "Search...", class: "form-control me-2" %>
+            <%= f.submit "Search", class: "btn btn-outline-light" %>
+          <% end %>
         </div>
       </nav>
     </header>

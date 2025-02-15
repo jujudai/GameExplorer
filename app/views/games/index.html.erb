@@ -1,25 +1,22 @@
 <h1>GameExplorer</h1>
-
-<!-- 📌 並び替え & 🎯 ジャンル絞り込み -->
+検索ワード｢<%= @keyword %>｣<br>
+検索結果：<%= @games.count %>件<br>   
+<!-- 📌 並び替え & 🎯 ジャンル絞り込み --> 
 <div class="mb-4">
-  <%= form_with url: games_path, method: :get, local: true, class: "row g-3 align-items-center" do |f| %>
-
-    <!-- 📌 並び替え -->
-    <div class="col-md-3">
-      <%= f.label :sort, "並び順", class: "form-label" %>
-      <%= f.select :sort, [["新しい順", "newest"], ["古い順", "oldest"], ["あいうえお順", "alphabetical"]],
+<%= form_with url: games_path, method: :get, local: true, class: "row g-3 align-items-center" do |f| %>
+  <!-- 📌 並び替え -->
+  <div class="col-md-3">
+    <%= f.hidden_field :search, value: @keyword %>
+    <%= f.label :sort, "並び順", class: "form-label" %>
+    <%= f.select :sort, [["新しい順", "newest"], ["古い順", "oldest"], ["あいうえお順", "alphabetical"]],
                   { selected: params[:sort] }, class: "form-select" %>
-    </div>
+  </div>
 
-
-
-    <!-- 🔄 フィルターボタン -->
-    <div class="col-md-2">
-      <%= f.submit "適用", class: "btn btn-primary mt-4" %>
-    </div>
-
-  <% end %>
-</div>
+  <!-- 🔄 フィルターボタン -->
+  <div class="col-md-2">
+    <%= f.submit "適用", class: "btn btn-primary mt-4" %>
+  </div>
+<% end %>
 
 <!-- 🎮 ゲーム一覧 -->
 <div class="row">

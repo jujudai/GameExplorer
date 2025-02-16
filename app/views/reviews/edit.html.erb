@@ -1,0 +1,31 @@
+<h3>レビューを編集</h3>
+<%= form_with(model: @review, local: true, url: game_review_path(@review.game, @review)) do |form| %>
+
+  <!-- ⭐ 星評価の編集 -->
+  <div class="form-group position-static">
+  <p>評価:</P>
+  <div id="post_raty"></div> <!-- 星を出力するセレクタ -->
+    <script>
+        var elem = document.querySelector('#post_raty');
+        var opt = {
+            starOn: "<%= asset_path('star-on.png') %>",
+            starOff: "<%= asset_path('star-off.png') %>",
+            scoreName: 'review[rating]',
+        };
+        raty(elem,opt);
+    </script>
+  </div>
+</div>
+
+  <!-- ✏️ レビュー内容の編集 -->
+  <div class="form-group">
+    <%= form.label :content, "レビュー内容" %>
+    <%= form.text_area :content, class: "form-control", rows: 4 %>
+  </div>
+
+  <!-- ✔️ 更新ボタン -->
+  <%= form.submit "更新", class: "btn btn-success mt-2" %>
+
+  <!-- ❌ キャンセルボタン（元のゲーム詳細ページへ） -->
+  <%= link_to "キャンセル", game_path(@review.game), class: "btn btn-secondary mt-2" %>
+<% end %>

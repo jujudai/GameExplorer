@@ -1,7 +1,10 @@
 <h1>GameExplorer</h1>
-検索ワード｢<%= @keyword %>｣<br>
-検索結果：<%= @games.count %>件<br>   
-<!-- 📌 並び替え & 🎯 ジャンル絞り込み --> 
+<% if @keyword.present? %>
+  検索ワード｢<%= @keyword %>｣<br>
+  検索結果：<%= @games.count %>件<br>
+<% end %>
+
+<!-- 📌 並び替え --> 
 <div class="mb-4">
 <%= form_with url: games_path, method: :get, local: true, class: "row g-3 align-items-center" do |f| %>
   <!-- 📌 並び替え -->

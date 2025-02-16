@@ -7,7 +7,15 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
+import Raty from "./raty.js"         // 同じ階層にあるraty.jsをRatyという名前でインポート
 
 Rails.start()
 // Turbolinks.start()
 ActiveStorage.start()
+
+// ratyアクションの定義
+window.raty = function(elem,opt){ 
+    var raty =  new Raty(elem,opt)
+    raty.init();
+    return raty;
+}

@@ -26,11 +26,21 @@ body {
 
 header {
   background-color: #343a40;
+  position: fixed; /* 背景を固定 */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
 }
 
-
- body {
-  background-image: image-url("hoge.jpg");
+footer {
+  position: relative;
+  width: 100%;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  text-align: center;
+  padding: 10px 0;
 }
 
 header nav ul {
@@ -52,19 +62,31 @@ header nav ul li a:hover {
   color: #0056b3;
 }
 
+
+.about-content {
+  flex: 1; /* ヘッダー・フッターの間で可変 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
 .about-background {
   background-image: url('about-bg.jpg'); /* 画像ファイルのパス */
   background-size: cover;  /* 画像を要素の大きさに合わせて拡大・縮小 */
   background-position: center center;  /* 画像を中央に配置 */
   background-repeat: no-repeat;  /* 画像の繰り返しを防止 */
-  height: 100vh;  /* 高さを画面全体に */
-  width: 100vw;
+  
+  position: fixed; /* 背景を固定 */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  
+  min-height: 100vh;  /* 高さを常に画面全体に */
   color: white;  /* 文字色を白にして画像の上でも読みやすく */
-  
-  max-width: 100%; /* 横幅を最大化 */
-  margin: 0 auto; /* 自動マージンで中央に配置 */
-  padding: 0; /* 余白を取り除く */
-  
+
   display: flex; /* Flexboxを使用 */
   flex-direction: column; /* 縦方向に並べる */
   justify-content: center; /* 垂直方向の中央配置 */
@@ -76,12 +98,12 @@ header nav ul li a:hover {
   background-color: rgba(0, 0, 0, 0.5);  /* 黒の背景で透明度50% */
   padding: 20px;  /* 内側に余白を追加 */
   border-radius: 10px;  /* 角を丸くする */
+  max-width: 80%; /* コンテンツの幅を制限 */
+  margin: auto; /* 中央揃え */
 }
 
-.about-background .text-container ul {
-  padding: 0;
-  list-style-type: none;  /* マーカーを非表示にする */
-  text-align: center;  /* テキストを中央揃え */
+ul{
+  list-style: none;
 }
 
 .about-background .text-container ul li {

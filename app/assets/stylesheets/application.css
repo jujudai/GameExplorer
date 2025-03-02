@@ -31,6 +31,7 @@ header {
   left: 0;
   right: 0;
   z-index: 2;
+  overflow: visible;
 }
 
 footer {
@@ -41,6 +42,36 @@ footer {
   color: white;
   text-align: center;
   padding: 10px 0;
+}
+
+.navbar-collapse {
+  position: absolute;
+  top: 56px;
+  left: 0;
+  width: 100%;
+  background-color: #44484c; /* メニューが見えなくなるのを防ぐ */
+  z-index: 1000;
+  padding: 10px 0;
+}
+
+/* ✅ ナビゲーションメニューのリンクがしっかり見えるように調整 */
+.navbar-nav .nav-link {
+  color: white;
+  padding: 10px;
+}
+
+.navbar-nav .nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+}
+
+/* ✅ ハンバーガーメニュー展開時のボーダー（オプション） */
+.navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
 }
 
 header nav ul {
